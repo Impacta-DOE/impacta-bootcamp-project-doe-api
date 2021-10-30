@@ -1,0 +1,15 @@
+br\com\impacta\doe\doe\infra\database\pessoa\PessoaRepositoryMock.class
+br\com\impacta\doe\doe\application\domain\pessoa\DadosBancarios.class
+br\com\impacta\doe\doe\application\domain\pessoa\Sexo.class
+br\com\impacta\doe\doe\application\domain\pessoa\Nacionalidade.class
+br\com\impacta\doe\doe\infra\database\pessoa\PessoaRepository.class
+br\com\impacta\doe\doe\application\domain\auth\Autenticacao.class
+br\com\impacta\doe\doe\web\pessoa\PessoaController.class
+br\com\impacta\doe\doe\web\pessoa\PessoaDto.class
+br\com\impacta\doe\doe\application\domain\pessoa\TipoConta.class
+br\com\impacta\doe\doe\application\domain\pessoa\TipoPessoa.class
+br\com\impacta\doe\doe\DoeApplication.class
+br\com\impacta\doe\doe\application\service\pessoa\PessoaService.class
+br\com\impacta\doe\doe\application\service\pessoa\PessoaServiceImpl.class
+br\com\impacta\doe\doe\application\domain\pessoa\Endereco.class
+br\com\impacta\doe\doe\application\domain\pessoa\Pessoa.class
