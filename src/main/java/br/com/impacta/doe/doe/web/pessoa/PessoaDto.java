@@ -4,9 +4,11 @@ import br.com.impacta.doe.doe.application.domain.pessoa.Nacionalidade;
 import br.com.impacta.doe.doe.application.domain.pessoa.Pessoa;
 import br.com.impacta.doe.doe.application.domain.pessoa.Sexo;
 import br.com.impacta.doe.doe.application.domain.pessoa.TipoPessoa;
+import lombok.Data;
 
 import java.time.LocalDate;
 
+@Data
 public class PessoaDto {
     private Long id;
     private TipoPessoa tipoPessoa;
@@ -17,7 +19,7 @@ public class PessoaDto {
     private LocalDate dataInclusao;
     private LocalDate dataNascimento;
     private Sexo sexo;
-    private Nacionalidade nacionalidade;
+    private NacionalidadeDto nacionalidade;
     private LocalDate dataAtualizacao;
 
     public PessoaDto(Pessoa pessoa) {
@@ -30,8 +32,8 @@ public class PessoaDto {
         this.dataInclusao = pessoa.getDataInclusao();
         this.dataNascimento = pessoa.getDataNascimento();
         this.sexo = pessoa.getSexo();
-        this.nacionalidade = pessoa.getNacionalidade();
         this.dataAtualizacao = pessoa.getDataAtualizacao();
+        this.nacionalidade = new NacionalidadeDto(pessoa.getNacionalidade());
     }
 
     public Pessoa converte() {
@@ -47,6 +49,7 @@ public class PessoaDto {
         pessoa.setSexo(this.sexo);
         pessoa.setDataNascimento(this.dataNascimento);
         pessoa.setDataAtualizacao(this.dataAtualizacao);
+        pessoa.setNacionalidade(this.nacionalidade.converte());
         return pessoa;
     }
 }
