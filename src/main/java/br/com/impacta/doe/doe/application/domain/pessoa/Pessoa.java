@@ -1,9 +1,12 @@
 package br.com.impacta.doe.doe.application.domain.pessoa;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
 public class Pessoa {
-    private String id;
+    private Long id;
     private TipoPessoa tipoPessoa;
     private String documento;
     private String nome;
