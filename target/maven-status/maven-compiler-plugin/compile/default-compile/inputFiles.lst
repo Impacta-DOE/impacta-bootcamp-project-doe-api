@@ -7,9 +7,10 @@ C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\c
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\web\pessoa\PessoaController.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\application\domain\pessoa\TipoPessoa.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\application\domain\pessoa\DadosBancarios.java
+C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\infra\swagger\SwaggerConfiguration.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\application\domain\pessoa\TipoConta.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\web\pessoa\PessoaDto.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\application\domain\auth\Autenticacao.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\application\domain\pessoa\Sexo.java
-C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\infra\database\pessoa\PessoaRepositoryMock.java
+C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\web\pessoa\NacionalidadeDto.java
 C:\Users\Arthur\IdeaProjects\impacta-bootcamp-project-doe-api\src\main\java\br\com\impacta\doe\doe\application\service\pessoa\PessoaServiceImpl.java
