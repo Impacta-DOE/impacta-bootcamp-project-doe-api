@@ -8,6 +8,7 @@ br\com\impacta\doe\doe\infra\swagger\SwaggerConfiguration.class
 br\com\impacta\doe\doe\web\pessoa\PessoaController.class
 br\com\impacta\doe\doe\web\pessoa\PessoaDto.class
 br\com\impacta\doe\doe\application\domain\pessoa\TipoConta.class
+br\com\impacta\doe\doe\infra\database\pessoa\PessoaRepositorySQLServer.class
 br\com\impacta\doe\doe\application\domain\pessoa\TipoPessoa.class
 br\com\impacta\doe\doe\DoeApplication.class
 br\com\impacta\doe\doe\application\service\pessoa\PessoaService.class

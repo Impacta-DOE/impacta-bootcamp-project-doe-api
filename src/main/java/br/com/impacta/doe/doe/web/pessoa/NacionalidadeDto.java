@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class NacionalidadeDto {
-    private String id;
+    private Long id;
     private String descricao;
 
     public NacionalidadeDto(Nacionalidade nacionalidade) {
