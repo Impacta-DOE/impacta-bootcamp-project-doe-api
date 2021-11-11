@@ -1,10 +1,8 @@
 package br.com.impacta.doe.doe.application.domain.pessoa;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
+@Entity
 public class DadosBancarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

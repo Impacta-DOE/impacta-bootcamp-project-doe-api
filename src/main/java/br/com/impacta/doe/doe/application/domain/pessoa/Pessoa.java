@@ -2,18 +2,16 @@ package br.com.impacta.doe.doe.application.domain.pessoa;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@Entity
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
     private String documento;
     private String nome;
@@ -22,6 +20,7 @@ public class Pessoa {
     private LocalDate dataInclusao;
     private LocalDate dataNascimento;
     private Sexo sexo;
+    @OneToOne
     private Nacionalidade nacionalidade;
     private LocalDate dataAtualizacao;
 }
