@@ -8,6 +8,9 @@ public class NacionalidadeDto {
     private Long id;
     private String descricao;
 
+    public NacionalidadeDto() {
+    }
+
     public NacionalidadeDto(Nacionalidade nacionalidade) {
         this.id = nacionalidade.getId();
         this.descricao = nacionalidade.getDescricao();
