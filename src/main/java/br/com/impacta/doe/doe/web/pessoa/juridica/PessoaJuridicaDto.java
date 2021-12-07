@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class PessoaJuridicaDto {
+    private Long id;
     private String cnpj;
     private String razaoSocial;
     private EnderecoDto endereco;
@@ -18,6 +19,7 @@ public class PessoaJuridicaDto {
     }
 
     public PessoaJuridicaDto(PessoaJuridica pessoaJuridica) {
+        this.id = pessoaJuridica.getId();
         this.cnpj = pessoaJuridica.getCnpj();
         this.razaoSocial = pessoaJuridica.getRazaoSocial();
         this.endereco = new EnderecoDto(pessoaJuridica.getEndereco());

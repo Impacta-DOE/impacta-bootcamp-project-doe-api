@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 @Data
 public class PessoaFisicaDto {
+    private Long id;
     private String nomeCompleto;
     private String registro;
     private String dataNascimento;
@@ -25,6 +26,7 @@ public class PessoaFisicaDto {
     }
 
     public PessoaFisicaDto(PessoaFisica pessoaFisica) {
+        this.id = pessoaFisica.getId();
         this.nomeCompleto = pessoaFisica.getNomeCompleto();
         this.registro = pessoaFisica.getRegistro();
         this.dataNascimento = pessoaFisica.getDataNascimento().toString();
