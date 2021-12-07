@@ -13,14 +13,17 @@ import java.time.format.DateTimeFormatter;
 @Data
 public class PessoaFisicaDto {
     private Long id;
+    private DadosContatoDto dadosContato;
+    private DadosBancariosDto dadosBancarios;
+    private EnderecoDto endereco;
+    private String senha;
+    private String img_avatar;
+    private String img_background;
     private String nomeCompleto;
-    private String registro;
     private String dataNascimento;
     private String sexo;
     private NacionalidadeDto nacionalidade;
-    private EnderecoDto endereco;
-    private DadosBancariosDto dadosBancarios;
-    private DadosContatoDto dadosContato;
+    private String registro;
 
     public PessoaFisicaDto() {
     }
@@ -31,6 +34,9 @@ public class PessoaFisicaDto {
         this.registro = pessoaFisica.getRegistro();
         this.dataNascimento = pessoaFisica.getDataNascimento().toString();
         this.sexo = pessoaFisica.getSexo();
+        this.senha = pessoaFisica.getSenha();
+        this.img_avatar = pessoaFisica.getImg_avatar();
+        this.img_background = pessoaFisica.getImg_background();
         this.nacionalidade = new NacionalidadeDto(pessoaFisica.getNacionalidade());
         this.endereco = new EnderecoDto(pessoaFisica.getEndereco());
         this.dadosBancarios = new DadosBancariosDto(pessoaFisica.getDadosBancarios());
@@ -46,6 +52,9 @@ public class PessoaFisicaDto {
         pessoaFisica.setDataNascimento(LocalDate.parse(this.dataNascimento, formatter));
 
         pessoaFisica.setSexo(this.sexo);
+        pessoaFisica.setSenha(this.senha);
+        pessoaFisica.setImg_avatar(this.img_avatar);
+        pessoaFisica.setImg_background(this.img_background);
         pessoaFisica.setNacionalidade(this.nacionalidade.converte());
         pessoaFisica.setEndereco(this.endereco.converte());
         pessoaFisica.setDadosBancarios(this.dadosBancarios.converte());

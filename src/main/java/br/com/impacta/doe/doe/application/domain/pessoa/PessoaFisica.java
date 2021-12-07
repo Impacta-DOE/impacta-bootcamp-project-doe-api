@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @Data
 @Entity
 public class PessoaFisica {
-    //TODO: extrair estes atributos para uma classe pessoa e utilizar herança
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +17,9 @@ public class PessoaFisica {
     private DadosBancarios dadosBancarios;
     @OneToOne(cascade=CascadeType.PERSIST)
     private Endereco endereco;
+    private String senha;
+    private String img_avatar;
+    private String img_background;
 
     private String nomeCompleto;
     private LocalDate dataNascimento;

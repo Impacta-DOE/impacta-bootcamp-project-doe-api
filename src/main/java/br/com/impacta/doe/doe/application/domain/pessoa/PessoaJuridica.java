@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Data
 @Entity
 public class PessoaJuridica {
-    //TODO: extrair estes atributos para uma classe pessoa e utilizar herança
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,9 +16,13 @@ public class PessoaJuridica {
     private DadosBancarios dadosBancarios;
     @OneToOne(cascade=CascadeType.PERSIST)
     private Endereco endereco;
+    private String senha;
+    private String img_avatar;
+    private String img_background;
 
     private String cnpj;
     private String razaoSocial;
+    private String subtituloOrganizacao;
 
     public PessoaJuridica() {
     }
