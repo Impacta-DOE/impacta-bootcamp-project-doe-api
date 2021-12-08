@@ -23,6 +23,7 @@ public class PessoaJuridica {
     private String cnpj;
     private String razaoSocial;
     private String subtituloOrganizacao;
+    private String idUsuario;
 
     public PessoaJuridica() {
     }

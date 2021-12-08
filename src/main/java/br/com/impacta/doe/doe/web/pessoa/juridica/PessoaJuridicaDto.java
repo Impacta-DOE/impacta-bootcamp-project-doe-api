@@ -15,6 +15,7 @@ public class PessoaJuridicaDto {
     private String senha;
     private String img_avatar;
     private String img_background;
+    private String idUsuario;
     private String cnpj;
     private String razaoSocial;
     private String subtituloOrganizacao;
@@ -29,6 +30,7 @@ public class PessoaJuridicaDto {
         this.senha = pessoaJuridica.getSenha();
         this.img_avatar = pessoaJuridica.getImg_avatar();
         this.img_background = pessoaJuridica.getImg_background();
+        this.idUsuario = pessoaJuridica.getIdUsuario();
         this.endereco = new EnderecoDto(pessoaJuridica.getEndereco());
         this.dadosBancarios = new DadosBancariosDto(pessoaJuridica.getDadosBancarios());
         this.dadosContato = new DadosContatoDto(pessoaJuridica.getDadosContato());
@@ -41,6 +43,7 @@ public class PessoaJuridicaDto {
         pessoaJuridica.setSenha(this.senha);
         pessoaJuridica.setImg_avatar(this.img_avatar);
         pessoaJuridica.setImg_background(this.img_background);
+        pessoaJuridica.setIdUsuario(this.idUsuario);
         pessoaJuridica.setEndereco(this.endereco.converte());
         pessoaJuridica.setDadosContato(this.dadosContato.converte());
         pessoaJuridica.setDadosBancarios(this.dadosBancarios.converte());

@@ -27,6 +27,7 @@ public class PessoaFisica {
     @OneToOne(cascade=CascadeType.PERSIST)
     private Nacionalidade nacionalidade;
     private String registro;
+    private String idUsuario;
 
     public PessoaFisica() {
     }
