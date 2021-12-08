@@ -1,6 +1,6 @@
 package br.com.impacta.doe.doe.web.pessoa.fisica;
 
-import br.com.impacta.doe.doe.application.service.pessoa.PessoaFisicaService;
+import br.com.impacta.doe.doe.application.service.pessoa.fisica.PessoaFisicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
