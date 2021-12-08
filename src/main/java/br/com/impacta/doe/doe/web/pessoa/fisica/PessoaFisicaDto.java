@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 @Data
 public class PessoaFisicaDto {
@@ -17,8 +18,10 @@ public class PessoaFisicaDto {
     private DadosBancariosDto dadosBancarios;
     private EnderecoDto endereco;
     private String senha;
-    private String img_avatar;
-    private String img_background;
+    private Base64 img_avatar_base64;
+    private Base64 img_background_base64;
+    private String img_avatar_url;
+    private String img_background_url;
     private String idUsuario;
     private String nomeCompleto;
     private String dataNascimento;
@@ -36,8 +39,8 @@ public class PessoaFisicaDto {
         this.dataNascimento = pessoaFisica.getDataNascimento().toString();
         this.sexo = pessoaFisica.getSexo();
         this.senha = pessoaFisica.getSenha();
-        this.img_avatar = pessoaFisica.getImg_avatar();
-        this.img_background = pessoaFisica.getImg_background();
+        this.img_avatar_url = pessoaFisica.getImg_avatar();
+        this.img_background_url = pessoaFisica.getImg_background();
         this.idUsuario = pessoaFisica.getIdUsuario();
         this.nacionalidade = new NacionalidadeDto(pessoaFisica.getNacionalidade());
         this.endereco = new EnderecoDto(pessoaFisica.getEndereco());
@@ -55,8 +58,6 @@ public class PessoaFisicaDto {
 
         pessoaFisica.setSexo(this.sexo);
         pessoaFisica.setSenha(this.senha);
-        pessoaFisica.setImg_avatar(this.img_avatar);
-        pessoaFisica.setImg_background(this.img_background);
         pessoaFisica.setIdUsuario(this.idUsuario);
         pessoaFisica.setNacionalidade(this.nacionalidade.converte());
         pessoaFisica.setEndereco(this.endereco.converte());

@@ -6,6 +6,10 @@ import br.com.impacta.doe.doe.web.pessoa.DadosContatoDto;
 import br.com.impacta.doe.doe.web.pessoa.EnderecoDto;
 import lombok.Data;
 
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.List;
+
 @Data
 public class PessoaJuridicaDto {
     private Long id;
@@ -13,8 +17,10 @@ public class PessoaJuridicaDto {
     private DadosBancariosDto dadosBancarios;
     private EnderecoDto endereco;
     private String senha;
-    private String img_avatar;
-    private String img_background;
+    private Base64 img_avatar_base64;
+    private Base64 img_background_base64;
+    private String img_avatar_url;
+    private String img_background_url;
     private String idUsuario;
     private String cnpj;
     private String razaoSocial;
@@ -28,8 +34,8 @@ public class PessoaJuridicaDto {
         this.cnpj = pessoaJuridica.getCnpj();
         this.razaoSocial = pessoaJuridica.getRazaoSocial();
         this.senha = pessoaJuridica.getSenha();
-        this.img_avatar = pessoaJuridica.getImg_avatar();
-        this.img_background = pessoaJuridica.getImg_background();
+        this.img_avatar_url = pessoaJuridica.getImg_avatar();
+        this.img_background_url = pessoaJuridica.getImg_background();
         this.idUsuario = pessoaJuridica.getIdUsuario();
         this.endereco = new EnderecoDto(pessoaJuridica.getEndereco());
         this.dadosBancarios = new DadosBancariosDto(pessoaJuridica.getDadosBancarios());
@@ -41,8 +47,6 @@ public class PessoaJuridicaDto {
         pessoaJuridica.setCnpj(this.cnpj);
         pessoaJuridica.setRazaoSocial(this.razaoSocial);
         pessoaJuridica.setSenha(this.senha);
-        pessoaJuridica.setImg_avatar(this.img_avatar);
-        pessoaJuridica.setImg_background(this.img_background);
         pessoaJuridica.setIdUsuario(this.idUsuario);
         pessoaJuridica.setEndereco(this.endereco.converte());
         pessoaJuridica.setDadosContato(this.dadosContato.converte());
