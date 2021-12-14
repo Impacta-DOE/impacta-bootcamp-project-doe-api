@@ -17,12 +17,12 @@ public class PessoaFisicaDto {
     private DadosContatoDto dadosContato;
     private DadosBancariosDto dadosBancarios;
     private EnderecoDto endereco;
+    private String username;
     private String senha;
     private Base64 img_avatar_base64;
     private Base64 img_background_base64;
     private String img_avatar_url;
     private String img_background_url;
-    private String idUsuario;
     private String nomeCompleto;
     private String dataNascimento;
     private String sexo;
@@ -41,7 +41,6 @@ public class PessoaFisicaDto {
         this.senha = pessoaFisica.getSenha();
         this.img_avatar_url = pessoaFisica.getImg_avatar();
         this.img_background_url = pessoaFisica.getImg_background();
-        this.idUsuario = pessoaFisica.getIdUsuario();
         this.nacionalidade = new NacionalidadeDto(pessoaFisica.getNacionalidade());
         this.endereco = new EnderecoDto(pessoaFisica.getEndereco());
         this.dadosBancarios = new DadosBancariosDto(pessoaFisica.getDadosBancarios());
@@ -58,7 +57,6 @@ public class PessoaFisicaDto {
 
         pessoaFisica.setSexo(this.sexo);
         pessoaFisica.setSenha(this.senha);
-        pessoaFisica.setIdUsuario(this.idUsuario);
         pessoaFisica.setNacionalidade(this.nacionalidade.converte());
         pessoaFisica.setEndereco(this.endereco.converte());
         pessoaFisica.setDadosBancarios(this.dadosBancarios.converte());
