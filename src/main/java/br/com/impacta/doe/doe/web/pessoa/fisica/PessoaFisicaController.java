@@ -1,6 +1,7 @@
 package br.com.impacta.doe.doe.web.pessoa.fisica;
 
 import br.com.impacta.doe.doe.application.service.pessoa.fisica.PessoaFisicaService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ public class PessoaFisicaController {
     private PessoaFisicaService service;
 
     @PostMapping
-    public PessoaFisicaDto salva(@RequestBody PessoaFisicaDto dto) {
+    public PessoaFisicaDto salva(@RequestBody PessoaFisicaDto dto) throws JsonProcessingException {
         return service.salva(dto);
     }
 
