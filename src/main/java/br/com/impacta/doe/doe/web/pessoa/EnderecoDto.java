@@ -10,7 +10,8 @@ public class EnderecoDto {
     private String logradouro;
     private String numero;
     private String bairro;
-    private String cidade;
+    private String idDaCidade;
+    private String idDoEstado;
     private String uf;
     private String complemento;
 
@@ -23,7 +24,8 @@ public class EnderecoDto {
         this.logradouro = endereco.getLogradouro();
         this.numero = endereco.getNumero();
         this.bairro = endereco.getBairro();
-        this.cidade = endereco.getCidade();
+        this.idDaCidade = endereco.getIdDaCidade();
+        this.idDoEstado = endereco.getIdDoEstado();
         this.uf = endereco.getUf();
         this.complemento = endereco.getComplemento();
     }
@@ -32,7 +34,8 @@ public class EnderecoDto {
         Endereco endereco = new Endereco();
         endereco.setBairro(this.bairro);
         endereco.setCep(this.cep);
-        endereco.setCidade(this.cidade);
+        endereco.setIdDaCidade(this.idDaCidade);
+        endereco.setIdDoEstado(this.idDoEstado);
         endereco.setId(this.id);
         endereco.setComplemento(this.complemento);
         endereco.setLogradouro(this.logradouro);
