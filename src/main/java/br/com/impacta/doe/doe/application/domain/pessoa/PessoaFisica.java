@@ -20,6 +20,7 @@ public class PessoaFisica {
     private String senha;
     private String img_avatar;
     private String img_background;
+    private String descricao;
 
     private String nomeCompleto;
     private LocalDate dataNascimento;

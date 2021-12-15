@@ -19,6 +19,7 @@ public class PessoaJuridica {
     private String senha;
     private String img_avatar;
     private String img_background;
+    private String descricao;
 
     private String cnpj;
     private String razaoSocial;

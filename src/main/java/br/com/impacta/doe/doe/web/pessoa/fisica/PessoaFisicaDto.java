@@ -9,7 +9,6 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Base64;
 
 @Data
 public class PessoaFisicaDto {
@@ -19,8 +18,6 @@ public class PessoaFisicaDto {
     private EnderecoDto endereco;
     private String username;
     private String senha;
-    private Base64 img_avatar_base64;
-    private Base64 img_background_base64;
     private String img_avatar_url;
     private String img_background_url;
     private String nomeCompleto;
@@ -28,6 +25,7 @@ public class PessoaFisicaDto {
     private String sexo;
     private NacionalidadeDto nacionalidade;
     private String registro;
+    private String descricao;
 
     public PessoaFisicaDto() {
     }
@@ -41,6 +39,7 @@ public class PessoaFisicaDto {
         this.senha = pessoaFisica.getSenha();
         this.img_avatar_url = pessoaFisica.getImg_avatar();
         this.img_background_url = pessoaFisica.getImg_background();
+        this.descricao = pessoaFisica.getDescricao();
         this.nacionalidade = new NacionalidadeDto(pessoaFisica.getNacionalidade());
         this.endereco = new EnderecoDto(pessoaFisica.getEndereco());
         this.dadosBancarios = new DadosBancariosDto(pessoaFisica.getDadosBancarios());
@@ -57,6 +56,7 @@ public class PessoaFisicaDto {
 
         pessoaFisica.setSexo(this.sexo);
         pessoaFisica.setSenha(this.senha);
+        pessoaFisica.setDescricao(this.descricao);
         pessoaFisica.setNacionalidade(this.nacionalidade.converte());
         pessoaFisica.setEndereco(this.endereco.converte());
         pessoaFisica.setDadosBancarios(this.dadosBancarios.converte());
