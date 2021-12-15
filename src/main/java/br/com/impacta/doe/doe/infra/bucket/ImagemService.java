@@ -1,7 +1,9 @@
 package br.com.impacta.doe.doe.infra.bucket;
 
-import java.util.Base64;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public interface ImagemService {
-    String upload(Base64 img);
+    String upload(MultipartFile img) throws IOException;
 }

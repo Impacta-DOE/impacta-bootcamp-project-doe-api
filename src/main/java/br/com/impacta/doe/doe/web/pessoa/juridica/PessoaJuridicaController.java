@@ -5,6 +5,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/pessoa/juridica")
@@ -14,13 +17,15 @@ public class PessoaJuridicaController {
     private PessoaJuridicaService service;
 
     @PostMapping
-    public PessoaJuridicaDto salva(@RequestBody PessoaJuridicaDto dto) throws JsonProcessingException {
+    public PessoaJuridicaDto salva(@RequestBody PessoaJuridicaDto dto) throws IOException {
         return service.salva(dto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PessoaJuridicaDto> atualiza(@PathVariable Long id,
-                                                      @RequestBody PessoaJuridicaDto dto) {
-        return service.atualiza(id, dto);
+                                                      @RequestBody PessoaJuridicaDto dto,
+                                                      @RequestParam("img_avatar") MultipartFile img_avatar,
+                                                      @RequestParam("img_background") MultipartFile img_background) throws IOException {
+        return service.atualiza(id, dto, img_avatar, img_background);
     }
 }

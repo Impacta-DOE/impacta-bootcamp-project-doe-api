@@ -5,11 +5,12 @@ import br.com.impacta.doe.doe.infra.bucket.ImagemService;
 import br.com.impacta.doe.doe.infra.database.pessoa.PessoaJuridicoRepository;
 import br.com.impacta.doe.doe.infra.http.usuario.UsuarioRepository;
 import br.com.impacta.doe.doe.web.pessoa.juridica.PessoaJuridicaDto;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -26,38 +27,36 @@ public class PessoaJuridicaServiceImpl implements PessoaJuridicaService {
     }
 
     @Override
-    public PessoaJuridicaDto salva(PessoaJuridicaDto dto) throws JsonProcessingException {
+    public PessoaJuridicaDto salva(PessoaJuridicaDto dto) throws IOException {
         PessoaJuridica pessoaJuridica = dto.converte();
 
         String idDoUsuario = usuarioRepository.salvaUsuario(dto.getUsername(), dto.getSenha());
         pessoaJuridica.setIdUsuario(idDoUsuario);
 
-        PessoaJuridica pessoaJuridicaComUrlsDeImagens = getPessoaJuridicaComUrlsDeImagens(dto, pessoaJuridica);
-        repository.save(pessoaJuridicaComUrlsDeImagens);
-
-        return new PessoaJuridicaDto(pessoaJuridicaComUrlsDeImagens);
+        repository.save(pessoaJuridica);
+        return new PessoaJuridicaDto(pessoaJuridica);
     }
 
     @Override
-    public ResponseEntity<PessoaJuridicaDto> atualiza(Long id, PessoaJuridicaDto dto) {
+    public ResponseEntity<PessoaJuridicaDto> atualiza(Long id, PessoaJuridicaDto dto, MultipartFile img_avatar, MultipartFile img_background) throws IOException {
         Optional<PessoaJuridica> pessoaOptional = repository.findById(id);
         if (pessoaOptional.isPresent()) {
             PessoaJuridica pessoaJuridica = dto.converte();
             pessoaJuridica.setId(id);
-            PessoaJuridica pessoaJuridicaComUrlsDeImagens = getPessoaJuridicaComUrlsDeImagens(dto, pessoaJuridica);
+            PessoaJuridica pessoaJuridicaComUrlsDeImagens = getPessoaJuridicaComUrlsDeImagens(img_avatar, img_background, pessoaJuridica);
             repository.save(pessoaJuridicaComUrlsDeImagens);
             return ResponseEntity.ok(new PessoaJuridicaDto(pessoaJuridicaComUrlsDeImagens));
         }
         return ResponseEntity.notFound().build();
     }
 
-    private PessoaJuridica getPessoaJuridicaComUrlsDeImagens(PessoaJuridicaDto dto, PessoaJuridica pessoaJuridica) {
-        if (dto.getImg_avatar_base64() != null) {
-            String urlAvatar = imagemService.upload(dto.getImg_avatar_base64());
+    private PessoaJuridica getPessoaJuridicaComUrlsDeImagens(MultipartFile img_avatar, MultipartFile img_background, PessoaJuridica pessoaJuridica) throws IOException {
+        if (img_avatar != null) {
+            String urlAvatar = imagemService.upload(img_avatar);
             pessoaJuridica.setImg_avatar(urlAvatar);
         }
-        if (dto.getImg_background_base64() != null) {
-            String urlBackground = imagemService.upload(dto.getImg_background_base64());
+        if (img_background != null) {
+            String urlBackground = imagemService.upload(img_background);
             pessoaJuridica.setImg_background(urlBackground);
         }
         return pessoaJuridica;

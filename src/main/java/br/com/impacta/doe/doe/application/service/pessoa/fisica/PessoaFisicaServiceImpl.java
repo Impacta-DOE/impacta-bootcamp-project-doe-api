@@ -5,11 +5,12 @@ import br.com.impacta.doe.doe.infra.bucket.ImagemService;
 import br.com.impacta.doe.doe.infra.database.pessoa.PessoaFisicaRepository;
 import br.com.impacta.doe.doe.infra.http.usuario.UsuarioRepository;
 import br.com.impacta.doe.doe.web.pessoa.fisica.PessoaFisicaDto;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -26,38 +27,36 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
     }
 
     @Override
-    public PessoaFisicaDto salva(PessoaFisicaDto dto) throws JsonProcessingException {
+    public PessoaFisicaDto salva(PessoaFisicaDto dto) throws IOException {
         PessoaFisica pessoaFisica = dto.converte();
 
-        String idDoUsuario = usuarioRepository.salvaUsuario(dto.getUsername(), dto.getSenha());
-        pessoaFisica.setIdUsuario(idDoUsuario);
+        /*String idDoUsuario = usuarioRepository.salvaUsuario(dto.getUsername(), dto.getSenha());
+        pessoaFisica.setIdUsuario(idDoUsuario);*/
 
-        PessoaFisica pessoaFisicaComUrlsDeImagens = getPessoaFisicaComUrlsDeImagens(dto, pessoaFisica);
-        repository.save(pessoaFisicaComUrlsDeImagens);
-
-        return new PessoaFisicaDto(pessoaFisicaComUrlsDeImagens);
+        repository.save(pessoaFisica);
+        return new PessoaFisicaDto(pessoaFisica);
     }
 
     @Override
-    public ResponseEntity<PessoaFisicaDto> atualiza(Long id, PessoaFisicaDto dto) {
+    public ResponseEntity<PessoaFisicaDto> atualiza(Long id, PessoaFisicaDto dto, MultipartFile img_avatar, MultipartFile img_background) throws IOException {
         Optional<PessoaFisica> pessoaOptional = repository.findById(id);
         if (pessoaOptional.isPresent()) {
             PessoaFisica pessoaFisica = dto.converte();
             pessoaFisica.setId(id);
-            PessoaFisica pessoaFisicaComUrlsDeImagens = getPessoaFisicaComUrlsDeImagens(dto, pessoaFisica);
+            PessoaFisica pessoaFisicaComUrlsDeImagens = getPessoaFisicaComUrlsDeImagens(img_avatar, img_background, pessoaFisica);
             repository.save(pessoaFisicaComUrlsDeImagens);
             return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisicaComUrlsDeImagens));
         }
         return ResponseEntity.notFound().build();
     }
 
-    private PessoaFisica getPessoaFisicaComUrlsDeImagens(PessoaFisicaDto dto, PessoaFisica pessoaFisica) {
-        if (dto.getImg_avatar_base64() != null) {
-            String urlAvatar = imagemService.upload(dto.getImg_avatar_base64());
+    private PessoaFisica getPessoaFisicaComUrlsDeImagens(MultipartFile img_avatar, MultipartFile img_background, PessoaFisica pessoaFisica) throws IOException {
+        if (img_avatar != null) {
+            String urlAvatar = imagemService.upload(img_avatar);
             pessoaFisica.setImg_avatar(urlAvatar);
         }
-        if (dto.getImg_background_base64() != null) {
-            String urlBackground = imagemService.upload(dto.getImg_background_base64());
+        if (img_background != null) {
+            String urlBackground = imagemService.upload(img_background);
             pessoaFisica.setImg_background(urlBackground);
         }
         return pessoaFisica;

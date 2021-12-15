@@ -1,11 +1,13 @@
 package br.com.impacta.doe.doe.application.service.pessoa.juridica;
 
 import br.com.impacta.doe.doe.web.pessoa.juridica.PessoaJuridicaDto;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 public interface PessoaJuridicaService {
-    PessoaJuridicaDto salva(PessoaJuridicaDto dto) throws JsonProcessingException;
+    PessoaJuridicaDto salva(PessoaJuridicaDto dto) throws IOException;
 
-    ResponseEntity<PessoaJuridicaDto> atualiza(Long id, PessoaJuridicaDto dto);
+    ResponseEntity<PessoaJuridicaDto> atualiza(Long id, PessoaJuridicaDto dto, MultipartFile img_avatar, MultipartFile img_background) throws IOException;
 }
