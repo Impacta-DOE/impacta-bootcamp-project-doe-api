@@ -30,8 +30,8 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
     public PessoaFisicaDto salva(PessoaFisicaDto dto) throws IOException {
         PessoaFisica pessoaFisica = dto.converte();
 
-        /*String idDoUsuario = usuarioRepository.salvaUsuario(dto.getUsername(), dto.getSenha());
-        pessoaFisica.setIdUsuario(idDoUsuario);*/
+        String idDoUsuario = usuarioRepository.salvaUsuario(dto.getUsername(), dto.getSenha());
+        pessoaFisica.setIdUsuario(idDoUsuario);
 
         repository.save(pessoaFisica);
         return new PessoaFisicaDto(pessoaFisica, dto.getUsername());
