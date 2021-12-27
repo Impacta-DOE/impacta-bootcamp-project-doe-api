@@ -24,11 +24,12 @@ public class PessoaJuridicaDto {
     public PessoaJuridicaDto() {
     }
 
-    public PessoaJuridicaDto(PessoaJuridica pessoaJuridica) {
+    public PessoaJuridicaDto(PessoaJuridica pessoaJuridica, String username) {
         this.id = pessoaJuridica.getId();
         this.cnpj = pessoaJuridica.getCnpj();
         this.razaoSocial = pessoaJuridica.getRazaoSocial();
         this.senha = pessoaJuridica.getSenha();
+        this.username = username;
         this.img_avatar_url = pessoaJuridica.getImg_avatar();
         this.img_background_url = pessoaJuridica.getImg_background();
         this.descricao = pessoaJuridica.getDescricao();

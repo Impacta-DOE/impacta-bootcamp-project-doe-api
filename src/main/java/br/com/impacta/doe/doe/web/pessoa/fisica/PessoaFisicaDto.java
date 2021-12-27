@@ -30,12 +30,13 @@ public class PessoaFisicaDto {
     public PessoaFisicaDto() {
     }
 
-    public PessoaFisicaDto(PessoaFisica pessoaFisica) {
+    public PessoaFisicaDto(PessoaFisica pessoaFisica, String username) {
         this.id = pessoaFisica.getId();
         this.nomeCompleto = pessoaFisica.getNomeCompleto();
         this.registro = pessoaFisica.getRegistro();
         this.dataNascimento = pessoaFisica.getDataNascimento().toString();
         this.sexo = pessoaFisica.getSexo();
+        this.username = username;
         this.senha = pessoaFisica.getSenha();
         this.img_avatar_url = pessoaFisica.getImg_avatar();
         this.img_background_url = pessoaFisica.getImg_background();

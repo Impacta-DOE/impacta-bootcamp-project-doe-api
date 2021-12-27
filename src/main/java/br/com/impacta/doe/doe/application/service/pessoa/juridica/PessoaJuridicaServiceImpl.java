@@ -34,7 +34,7 @@ public class PessoaJuridicaServiceImpl implements PessoaJuridicaService {
         pessoaJuridica.setIdUsuario(idDoUsuario);
 
         repository.save(pessoaJuridica);
-        return new PessoaJuridicaDto(pessoaJuridica);
+        return new PessoaJuridicaDto(pessoaJuridica, dto.getUsername());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PessoaJuridicaServiceImpl implements PessoaJuridicaService {
             pessoaJuridica.setId(id);
             PessoaJuridica pessoaJuridicaComUrlsDeImagens = getPessoaJuridicaComUrlsDeImagens(img_avatar, img_background, pessoaJuridica);
             repository.save(pessoaJuridicaComUrlsDeImagens);
-            return ResponseEntity.ok(new PessoaJuridicaDto(pessoaJuridicaComUrlsDeImagens));
+            return ResponseEntity.ok(new PessoaJuridicaDto(pessoaJuridicaComUrlsDeImagens, dto.getUsername()));
         }
         return ResponseEntity.notFound().build();
     }

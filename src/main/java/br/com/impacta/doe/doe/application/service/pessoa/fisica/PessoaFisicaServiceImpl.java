@@ -34,7 +34,7 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
         pessoaFisica.setIdUsuario(idDoUsuario);*/
 
         repository.save(pessoaFisica);
-        return new PessoaFisicaDto(pessoaFisica);
+        return new PessoaFisicaDto(pessoaFisica, dto.getUsername());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
             pessoaFisica.setId(id);
             PessoaFisica pessoaFisicaComUrlsDeImagens = getPessoaFisicaComUrlsDeImagens(img_avatar, img_background, pessoaFisica);
             repository.save(pessoaFisicaComUrlsDeImagens);
-            return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisicaComUrlsDeImagens));
+            return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisicaComUrlsDeImagens, dto.getUsername()));
         }
         return ResponseEntity.notFound().build();
     }
