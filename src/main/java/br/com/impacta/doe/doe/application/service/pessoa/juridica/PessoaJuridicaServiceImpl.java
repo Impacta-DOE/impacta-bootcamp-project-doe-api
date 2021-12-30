@@ -38,27 +38,27 @@ public class PessoaJuridicaServiceImpl implements PessoaJuridicaService {
     }
 
     @Override
-    public ResponseEntity<PessoaJuridicaDto> atualiza(Long id, PessoaJuridicaDto dto, MultipartFile img_avatar, MultipartFile img_background) throws IOException {
+    public ResponseEntity<PessoaJuridicaDto> atualiza(Long id, PessoaJuridicaDto dto) throws IOException {
         Optional<PessoaJuridica> pessoaOptional = repository.findById(id);
         if (pessoaOptional.isPresent()) {
             PessoaJuridica pessoaJuridica = dto.converte();
             pessoaJuridica.setId(id);
-            PessoaJuridica pessoaJuridicaComUrlsDeImagens = getPessoaJuridicaComUrlsDeImagens(img_avatar, img_background, pessoaJuridica);
-            repository.save(pessoaJuridicaComUrlsDeImagens);
-            return ResponseEntity.ok(new PessoaJuridicaDto(pessoaJuridicaComUrlsDeImagens, dto.getUsername()));
+            repository.save(pessoaJuridica);
+            return ResponseEntity.ok(new PessoaJuridicaDto(pessoaJuridica, dto.getUsername()));
         }
         return ResponseEntity.notFound().build();
     }
 
-    private PessoaJuridica getPessoaJuridicaComUrlsDeImagens(MultipartFile img_avatar, MultipartFile img_background, PessoaJuridica pessoaJuridica) throws IOException {
-        if (img_avatar != null) {
-            String urlAvatar = imagemService.upload(img_avatar);
-            pessoaJuridica.setImg_avatar(urlAvatar);
+    @Override
+    public String uploadImagem(Long id, MultipartFile img_avatar, MultipartFile img_background) throws IOException {
+        Optional<PessoaJuridica> pessoaOptional = repository.findById(id);
+        if (pessoaOptional.isPresent()) {
+            PessoaJuridica pessoaJuridica = pessoaOptional.get();
+            pessoaJuridica.setImg_avatar(imagemService.upload(img_avatar));
+            pessoaJuridica.setImg_background(imagemService.upload(img_background));
+            repository.save(pessoaJuridica);
+            return "Sucesso";
         }
-        if (img_background != null) {
-            String urlBackground = imagemService.upload(img_background);
-            pessoaJuridica.setImg_background(urlBackground);
-        }
-        return pessoaJuridica;
+        return "Algo deu errado";
     }
 }

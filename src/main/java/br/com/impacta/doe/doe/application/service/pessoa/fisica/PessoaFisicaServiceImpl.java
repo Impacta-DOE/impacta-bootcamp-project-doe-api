@@ -38,27 +38,27 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
     }
 
     @Override
-    public ResponseEntity<PessoaFisicaDto> atualiza(Long id, PessoaFisicaDto dto, MultipartFile img_avatar, MultipartFile img_background) throws IOException {
+    public ResponseEntity<PessoaFisicaDto> atualiza(Long id, PessoaFisicaDto dto) throws IOException {
         Optional<PessoaFisica> pessoaOptional = repository.findById(id);
         if (pessoaOptional.isPresent()) {
             PessoaFisica pessoaFisica = dto.converte();
             pessoaFisica.setId(id);
-            PessoaFisica pessoaFisicaComUrlsDeImagens = getPessoaFisicaComUrlsDeImagens(img_avatar, img_background, pessoaFisica);
-            repository.save(pessoaFisicaComUrlsDeImagens);
-            return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisicaComUrlsDeImagens, dto.getUsername()));
+            repository.save(pessoaFisica);
+            return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisica, dto.getUsername()));
         }
         return ResponseEntity.notFound().build();
     }
 
-    private PessoaFisica getPessoaFisicaComUrlsDeImagens(MultipartFile img_avatar, MultipartFile img_background, PessoaFisica pessoaFisica) throws IOException {
-        if (img_avatar != null) {
-            String urlAvatar = imagemService.upload(img_avatar);
-            pessoaFisica.setImg_avatar(urlAvatar);
+    @Override
+    public String uploadImagem(Long id, MultipartFile img_avatar, MultipartFile img_background) throws IOException {
+        Optional<PessoaFisica> pessoaOptional = repository.findById(id);
+        if (pessoaOptional.isPresent()) {
+            PessoaFisica pessoaFisica = pessoaOptional.get();
+            pessoaFisica.setImg_avatar(imagemService.upload(img_avatar));
+            pessoaFisica.setImg_background(imagemService.upload(img_background));
+            repository.save(pessoaFisica);
+            return "Sucesso";
         }
-        if (img_background != null) {
-            String urlBackground = imagemService.upload(img_background);
-            pessoaFisica.setImg_background(urlBackground);
-        }
-        return pessoaFisica;
+        return "Algo deu errado";
     }
 }

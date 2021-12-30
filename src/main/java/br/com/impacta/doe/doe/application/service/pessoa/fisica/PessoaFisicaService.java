@@ -9,5 +9,7 @@ import java.io.IOException;
 public interface PessoaFisicaService {
     PessoaFisicaDto salva(PessoaFisicaDto dto) throws IOException;
 
-    ResponseEntity<PessoaFisicaDto> atualiza(Long id, PessoaFisicaDto dto, MultipartFile img_avatar, MultipartFile img_background) throws IOException;
+    ResponseEntity<PessoaFisicaDto> atualiza(Long id, PessoaFisicaDto dto) throws IOException;
+
+    String uploadImagem(Long id, MultipartFile img_avatar, MultipartFile img_background) throws IOException;
 }
