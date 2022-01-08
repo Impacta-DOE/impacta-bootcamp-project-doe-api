@@ -14,9 +14,13 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @GetMapping("{id}")
-    public IdPessoaDto buscaPessoaPorUsuario(@PathVariable String id){
-        return pessoaService.buscaPessoaPorUsuario(id);
+    @GetMapping("/{id}/pessoa/id")
+    public IdPessoaDto buscaIdDaPessoaPorUsuario(@PathVariable String id) {
+        return pessoaService.buscaIdDaPessoaPorUsuario(id);
     }
 
+    @GetMapping("/{id}/pessoa")
+    public Object buscaPessoaPorUsuario(@PathVariable String id) {
+        return pessoaService.buscaPessoaPorUsuario(id);
+    }
 }
