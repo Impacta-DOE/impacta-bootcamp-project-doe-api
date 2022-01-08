@@ -1,5 +1,6 @@
 package br.com.impacta.doe.doe.infra.http.usuario;
 
+import br.com.impacta.doe.doe.application.domain.exception.usuario.UsernameJaExisteException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,13 +29,15 @@ public class UsuarioServiceClient implements UsuarioRepository {
 
         HttpEntity<String> httpEntity = new HttpEntity<>(usuarioJson, httpHeaders);
 
-        ResponseEntity<UsuarioJSON> response = restTemplate.exchange(
-                this.baseURL + "/usuario", HttpMethod.POST,
-                httpEntity, UsuarioJSON.class
-        );
-
-        if (response.getBody() != null)
-            return String.valueOf(response.getBody().getId());
+        try {
+            ResponseEntity<UsuarioJSON> response = restTemplate.exchange(
+                    this.baseURL + "/usuario", HttpMethod.POST,
+                    httpEntity, UsuarioJSON.class
+            );
+            if (response.getBody() != null) return String.valueOf(response.getBody().getId());
+        } catch (Exception e) {
+            throw new UsernameJaExisteException();
+        }
         return null;
     }
 }
