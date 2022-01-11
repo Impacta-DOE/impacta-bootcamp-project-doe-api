@@ -30,10 +30,10 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public IdPessoaDto buscaIdDaPessoaPorUsuario(String id) {
         Optional<PessoaFisica> fisicaOptional = fisicaRepository.findByidUsuario(id);
-        if (fisicaOptional.isPresent()) return new IdPessoaDto(fisicaOptional.get().getId());
+        if (fisicaOptional.isPresent()) return new IdPessoaDto(fisicaOptional.get().getId(), "FISICA");
 
         Optional<PessoaJuridica> juridicaOptional = juridicoRepository.findByidUsuario(id);
-        if (juridicaOptional.isPresent()) return new IdPessoaDto(juridicaOptional.get().getId());
+        if (juridicaOptional.isPresent()) return new IdPessoaDto(juridicaOptional.get().getId(), "JURIDICA");
 
         throw new UsuarioNaoExisteException();
     }
