@@ -43,6 +43,7 @@ public class PessoaJuridicaServiceImpl implements PessoaJuridicaService {
         if (pessoaOptional.isPresent()) {
             PessoaJuridica pessoaJuridica = dto.converte();
             pessoaJuridica.setId(id);
+            pessoaJuridica.setIdUsuario(pessoaOptional.get().getIdUsuario());
             repository.save(pessoaJuridica);
             return ResponseEntity.ok(new PessoaJuridicaDto(pessoaJuridica, dto.getUsername()));
         }

@@ -43,6 +43,7 @@ public class PessoaFisicaServiceImpl implements PessoaFisicaService {
         if (pessoaOptional.isPresent()) {
             PessoaFisica pessoaFisica = dto.converte();
             pessoaFisica.setId(id);
+            pessoaFisica.setIdUsuario(pessoaOptional.get().getIdUsuario());
             repository.save(pessoaFisica);
             return ResponseEntity.ok(new PessoaFisicaDto(pessoaFisica, dto.getUsername()));
         }
